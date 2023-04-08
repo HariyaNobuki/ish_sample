@@ -6,6 +6,9 @@ import shutil
 # setting problem
 import load_problem
 
+## my module
+from GEP.tools.makefiles import MakeFiles
+
 class Configuration:
     def __init__(self,args):
         self.c_path = os.getcwd()
@@ -19,18 +22,13 @@ class Configuration:
         self.num_trial = args.numtrial
         self.n_pop = args.numpop
         self.n_elites = 1
+
+        self.res_root = self.args.result_path
     
     def set_problem(self,problem):
         self.problem = problem
-        self.res_path = self.ex_path + "/GEP/" + self.problem
-
-    
-    def problem_setting(self):
-        self.train_plot = p_args.N_TRAIN
-        self.test_plot = p_args.N_TEST
-        self.num_x = p_args.X_DIM
-        self.args.x_min = p_args.X_MIN
-        self.args.x_max = p_args.X_MAX
+        self.res_path = os.path.join(self.res_root , self.problem)
+        MakeFiles(filename=self.res_path,path=self.res_root)
 
     
     def ex_reset(self,path):
@@ -39,8 +37,6 @@ class Configuration:
         except OSError as e:
             pass
     
-    def set_c_respath(self,respath):
-        self.c_respath = respath
 
     
     def set_init_sample(self,mode):
@@ -89,7 +85,6 @@ class Configuration:
         Y = self.pl.switcher(X)
         return X , Y
 
-    def resetSeed(self,seed=10000):
-        seed = self.c_seed
-        np.random.seed(seed=seed)
+    def resetSeed(self,seed=1):
+        np.random.seed(seed)
         random.seed(seed)

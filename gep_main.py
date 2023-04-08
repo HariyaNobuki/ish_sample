@@ -21,14 +21,9 @@ if __name__ == '__main__':
     for problem in args.problems:   ## ex.. F-
         print(crayons.blue("### "),crayons.red(problem))
         cnf.set_problem(problem)
-        cnf.problem_setting()
 
-        for trial in range(cnf.num_trial):
-            c_trial = args.lognumber + trial
-            cnf.c_seed = c_trial
-            cnf.resetSeed()
-            MakeFiles(filename="trial_{}".format(c_trial),path=cnf.res_path)
-            cnf.set_c_respath(respath=cnf.res_path+"/trial_{}".format(c_trial))
+        for trial in range(args.num_trial):
+            cnf.resetSeed(trial)
             alg = gep.GEP(cnf)
             alg.MakeInitPlot()  # make plot
             alg.main()
