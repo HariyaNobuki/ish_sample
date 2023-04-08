@@ -1,36 +1,16 @@
 import os , sys
-import crayons
 import operator 
 from operator import attrgetter
 import numpy as np
-import pandas as pd
-import time
 import tqdm
 
-from scipy.interpolate import Rbf
-from scipy.spatial import distance
-from pyDOE2 import lhs
-from scipy.stats import rankdata
-from scipy.stats import kendalltau , norm
-from sklearn.ensemble import RandomForestRegressor  # randf
-from sklearn.metrics import r2_score
-
-import pickle   # If different data types can be stored
 ### My module
-from gensim.models.doc2vec import Doc2Vec, TaggedDocument
-from scipy.interpolate import Rbf
-from    pydacefit.dace                      import DACE
-import  GPy
-
-sys.path.append(os.path.join(os.path.dirname(__file__), '../tools'))
-import logger
-
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from GEP.tools import logger
+from GEP.tools import myoperation
 import geppy_hry as gep
 from deap_hry import creator, base, tools
 import deap_hry as deap
 
-import myoperation
 
 
 class GEP:
@@ -51,9 +31,9 @@ class GEP:
         pset.add_function(operator.sub, 2)
         pset.add_function(operator.mul, 2)
         pset.add_function(myoperation.protected_div, 2)
-        pset.add_function(myoperation.sin, 1)
-        pset.add_function(myoperation.cos, 1)
-        pset.add_function(myoperation.exp, 1)
+        pset.add_function(operator.sin, 1)
+        pset.add_function(operator.cos, 1)
+        pset.add_function(operator.exp, 1)
         #pset.add_function(myoperation.log, 1)
         #pset.add_ephemeral_terminal(name='enc', gen=lambda: np.random.uniform(0, 1)) # each ENC is a random integer within [-10, 10]
         
