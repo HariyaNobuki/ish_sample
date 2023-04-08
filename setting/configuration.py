@@ -1,75 +1,31 @@
-import crayons
 import numpy as np
 import random 
-import os,sys
+import os
 import shutil
-from pydacefit.corr import corr_gauss, corr_cubic, corr_exp, corr_expg, corr_spline, corr_spherical
-from pydacefit.regr import regr_constant, regr_linear, regr_quadratic
-import warnings
 
-# make dataset
-from load_dataset import load_airfoil
-from load_dataset import load_boston
-from load_dataset import load_wine
-from load_dataset import load_winered
-from load_dataset import load_winewhite
-from load_dataset import load_concrete
-from load_dataset import load_yacht
+# setting problem
 import load_problem
 
-sys.path.append(os.path.join(os.path.dirname(__file__), 'setting'))
-import _edit_profile
-
-
-# locak debaugs
 class Configuration:
     def __init__(self,args):
         self.c_path = os.getcwd()
         self.args = args
-        warnings.simplefilter('ignore')
-        self.dict_pl = {
-                        'Nguyen5':'bench',
-                        'Nguyen7':'bench',
-                        'Keijzer11':'bench',
-                        'Nonic':'bench',
-                        'Hartman':'bench',
-                        }
 
-        if self.args.NAS == "local":
-            os.makedirs("_result",exist_ok=True)
-            self.ex_path = "_result"
-            self.c_path = os.getcwd()
-
-        self.c_seed = None
-        #desktop_path = os.path.expanduser('~/Desktop') + "\192.168.11.8\Experiment\\2023_hariya"
-        self.MAX_EVAL = self.args.maxeval     # df = 1500
-        self.h = self.args.header          # head length
-        self.n_genes = self.args.n_genes    # number of genes in a chromosome
-        self.train_plot = self.args.train_plot
-        self.test_plot = self.args.test_plot
-        self.num_trial = self.args.numtrial
-        self.n_pop = self.args.numpop
-        self.n_pop_val = 100
-        self.n_gen = 10000
-
+        self.MAX_EVAL = args.maxeval     # df = 1500
+        self.h = args.header          # head length
+        self.n_genes = args.n_genes    # number of genes in a chromosome
+        self.train_plot = args.train_plot
+        self.test_plot = args.test_plot
+        self.num_trial = args.numtrial
+        self.n_pop = args.numpop
         self.n_elites = 1
-        self.logsplit = 10
+    
+    def set_problem(self,problem):
+        self.problem = problem
+        self.res_path = self.ex_path + "/GEP/" + self.problem
+
     
     def problem_setting(self):
-        if self.problem == 'Nguyen5':
-            p_args = _edit_profile.Nguyen5()
-        elif self.problem == 'Nguyen7':
-            p_args = _edit_profile.Nguyen7()
-        elif self.problem == 'Keijzer11':
-            p_args = _edit_profile.Keijzer11()
-        elif self.problem == 'Nonic':
-            p_args = _edit_profile.Nonic()
-        elif self.problem == 'Hartman':
-            p_args = _edit_profile.Hartman()
-        elif self.problem == 'wine':
-            p_args = _edit_profile.Keijzer11()
-        else:
-            p_args = _edit_profile.DAMMY_REAL()
         self.train_plot = p_args.N_TRAIN
         self.test_plot = p_args.N_TEST
         self.num_x = p_args.X_DIM
@@ -85,10 +41,6 @@ class Configuration:
     
     def set_c_respath(self,respath):
         self.c_respath = respath
-    
-    def set_problem(self,problem):
-        self.problem = problem
-        self.res_path = self.ex_path + "/GEP/" + self.problem
 
     
     def set_init_sample(self,mode):

@@ -3,6 +3,7 @@
 
 ## module
 import crayons  
+import warnings
 
 ## my module
 from setting.configuration import Configuration
@@ -11,12 +12,13 @@ from GEP.algorithm import gep
 from GEP.tools.makefiles import MakeFiles
 
 if __name__ == '__main__':
+    warnings.simplefilter('ignore')
 
     args = set_parse()
     cnf = Configuration(args)
     cnf.resetSeed()
 
-    for problem in cnf.dict_pl.keys():
+    for problem in args.problems:   ## ex.. F-
         print(crayons.blue("### "),crayons.red(problem))
         cnf.set_problem(problem)
         cnf.problem_setting()

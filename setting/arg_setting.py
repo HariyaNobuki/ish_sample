@@ -10,14 +10,10 @@ def set_parse():
 
     # logging
     parser.add_argument('--result_path', type=str, default="result/")
-    # log
+    # expriment setting
     parser.add_argument('--num_trial', type=int, default=31, help='Num. of trials')
     # problem
-    parser.add_argument('--num_x', '-num_x', type=int, default=1, help='num of x')
-    parser.add_argument('--x_min', '-x_min', type=int, default=-1, help='range x')
-    parser.add_argument('--x_max', '-x_max', type=int, default=1, help='range x')
-    parser.add_argument('--train_plot', '-train_p', type=int, default=10, help='train plot')
-    parser.add_argument('--test_plot', '-test_p', type=int, default=100, help='test plot')
+    parser.add_argument('--problems', type=list, default=["F0","F2","F3","F5","F6","F9"], help='problems')
     # GEP 
     parser.add_argument('--maxeval', '-me', type=int, default=10000, help='maxevaluation')
     parser.add_argument('--header', '-head', type=int, default=6, help='header length')
