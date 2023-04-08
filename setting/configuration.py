@@ -31,14 +31,6 @@ class Configuration:
         MakeFiles(filename=self.res_path,path=self.res_root)
 
     
-    def ex_reset(self,path):
-        try:
-            shutil.rmtree(path+"/")
-        except OSError as e:
-            pass
-    
-
-    
     def set_init_sample(self,mode):
         # data loader
         self.pl = load_problem.Problem(self.problem)
