@@ -17,7 +17,6 @@ class Configuration:
         self.MAX_EVAL = args.maxeval     # df = 1500
         self.h = args.header          # head length
         self.n_genes = args.n_genes    # number of genes in a chromosome
-        self.num_trial = args.numtrial
         self.n_pop = args.numpop
         self.n_elites = 1
 
@@ -27,7 +26,13 @@ class Configuration:
         params = []
         problems = self.args.problems
         if "F0" in problems:
-            params.append(F0._set_problem_dict)
+            params.append({
+            'name':'F0',
+            'num_x':2,
+            'x1':[-1,1],
+            'x2':[-1,1],
+            'operand':["+", "-", "sin", "cos"],
+          })
         #if "F2" in problems:
         #    params.append(F2._set_problem_dict)
         #if "F3" in problems:
@@ -39,8 +44,11 @@ class Configuration:
         #if "F9" in problems:
         #    params.append(F9._set_problem_dict)
         return params
-        self.res_path = os.path.join(self.res_root , self.problem)
-        MakeFiles(filename=self.res_path,path=self.res_root)
+    
+    def set_param(self,info):
+        self.num_x = info['num_x']
+        self.operand = info['operand']
+
 
 
     

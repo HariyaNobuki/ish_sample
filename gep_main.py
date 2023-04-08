@@ -17,6 +17,9 @@ if __name__ == '__main__':
     args = set_parse()
     cnf = Configuration(args)
     params = cnf.set_problem()
+    for info in params:
+        print(crayons.red("### "),crayons.red(info['name']))
+
 
     for problem in args.problems:   ## ex.. F-
         print(crayons.blue("### "),crayons.red(problem))
