@@ -33,10 +33,6 @@ class Configuration:
                         'Keijzer11':'bench',
                         'Nonic':'bench',
                         'Hartman':'bench',
-                        'wine':'real',
-                        'concrete':'real',
-                        'airfoil':'real',
-                        'boston':'real',
                         }
 
         if self.args.NAS == "local":

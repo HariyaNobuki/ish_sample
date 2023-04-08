@@ -1,28 +1,23 @@
 # Prod. By  Hariya Nobuki
 # gene expression programming
+
+## module
+import crayons  
+
+## my module
 from setting.configuration import Configuration
 from setting.arg_setting import set_parse
-
-
 from GEP.algorithm import gep
 from GEP.tools.makefiles import MakeFiles
-
-import crayons
-import _edit_profile
 
 if __name__ == '__main__':
 
     args = set_parse()
     cnf = Configuration(args)
     cnf.resetSeed()
-    
-    #cnf.ex_reset(cnf.res_path)
-
-    print(crayons.red(r"### normal gep ###"))
 
     for problem in cnf.dict_pl.keys():
-        print(crayons.blue("### "),end='')
-        print(problem)
+        print(crayons.blue("### "),crayons.red(problem))
         cnf.set_problem(problem)
         cnf.problem_setting()
 
