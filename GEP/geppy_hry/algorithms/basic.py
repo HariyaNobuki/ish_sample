@@ -7,7 +7,7 @@ operations into a :class:`deap.base.Toolbox` object, the GEP evolution can be si
 algorithms. Of course, for complicated problems, you may want to define your own algorithms, and the implementation here
 can be used as a reference.
 """
-import deap_hry as deap
+import GEP.deap_hry as deap
 import random
 import warnings
 import numpy as np

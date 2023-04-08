@@ -8,7 +8,7 @@ they should also accept a toolbox instance and retrieve the operators and their 
 instance.
 """
 
-from deap_hry import base
+from GEP.deap_hry import base
 import collections
 
 

@@ -16,11 +16,10 @@ if __name__ == '__main__':
 
     args = set_parse()
     cnf = Configuration(args)
-    cnf.resetSeed()
+    params = cnf.set_problem()
 
     for problem in args.problems:   ## ex.. F-
         print(crayons.blue("### "),crayons.red(problem))
-        cnf.set_problem(problem)
 
         for trial in range(args.num_trial):
             cnf.resetSeed(trial)

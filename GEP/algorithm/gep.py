@@ -7,9 +7,9 @@ import tqdm
 ### My module
 from GEP.tools import logger
 from GEP.tools import myoperation
-import geppy_hry as gep
-from deap_hry import creator, base, tools
-import deap_hry as deap
+import GEP.geppy_hry as gep
+from GEP.deap_hry import creator, base, tools
+import GEP.deap_hry as deap
 
 ## problem setting
 from GEP.problem import F0

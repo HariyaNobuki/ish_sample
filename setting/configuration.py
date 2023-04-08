@@ -3,11 +3,11 @@ import random
 import os
 import shutil
 
-# setting problem
-import load_problem
-
 ## my module
 from GEP.tools.makefiles import MakeFiles
+
+## problem setting
+from GEP.problem import F0
 
 class Configuration:
     def __init__(self,args):
@@ -17,18 +17,31 @@ class Configuration:
         self.MAX_EVAL = args.maxeval     # df = 1500
         self.h = args.header          # head length
         self.n_genes = args.n_genes    # number of genes in a chromosome
-        self.train_plot = args.train_plot
-        self.test_plot = args.test_plot
         self.num_trial = args.numtrial
         self.n_pop = args.numpop
         self.n_elites = 1
 
         self.res_root = self.args.result_path
     
-    def set_problem(self,problem):
-        self.problem = problem
+    def set_problem(self):
+        params = []
+        problems = self.args.problems
+        if "F0" in problems:
+            params.append(F0._set_problem_dict)
+        #if "F2" in problems:
+        #    params.append(F2._set_problem_dict)
+        #if "F3" in problems:
+        #    params.append(F3._set_problem_dict)
+        #if "F5" in problems:
+        #    params.append(F5._set_problem_dict)
+        #if "F6" in problems:
+        #    params.append(F6._set_problem_dict)
+        #if "F9" in problems:
+        #    params.append(F9._set_problem_dict)
+        return params
         self.res_path = os.path.join(self.res_root , self.problem)
         MakeFiles(filename=self.res_path,path=self.res_root)
+
 
     
     def set_init_sample(self,mode):
