@@ -1,22 +1,19 @@
-# all algorithm for gen fitness
-# this variation 2 (x , y)
-import os , sys
-import setting.configuration
-import setting.arg_setting
+# Prod. By  Hariya Nobuki
+# gene expression programming
+from setting.configuration import Configuration
+from setting.arg_setting import set_parse
 
 
 from GEP.algorithm import gep
 from GEP.tools.makefiles import MakeFiles
 
-import numpy as np
 import crayons
 import _edit_profile
 
 if __name__ == '__main__':
 
-    args = arg_setting.set_parse()
-
-    cnf = configuration.Configuration(args)
+    args = set_parse()
+    cnf = Configuration(args)
     cnf.resetSeed()
     
     #cnf.ex_reset(cnf.res_path)
