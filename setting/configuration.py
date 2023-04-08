@@ -53,37 +53,11 @@ class Configuration:
 
     
     def set_init_sample(self,mode):
-        # data loader
-        self.pl = load_problem.Problem(self.problem)
-        ### real world ###
-        print(os.getcwd())
-        if self.problem == "airfoil":
-            X,Y = load_airfoil(self.c_path+"/dataset/")
-            self.num_x = X.shape[0]
-        elif self.problem == "boston":
-            X,Y = load_boston(self.c_path+"/dataset/")
-            self.num_x = X.shape[0]
-        elif self.problem == "wine":
-            X,Y = load_wine(self.c_path+"/dataset/")
-            self.num_x = X.shape[0]
-        elif self.problem == "winered":
-            X,Y = load_winered(self.c_path+"/dataset/")
-            self.num_x = X.shape[0]
-        elif self.problem == "winewhite":
-            X,Y = load_winewhite(self.c_path+"/dataset/")
-            self.num_x = X.shape[0]
-        elif self.problem == "concrete":
-            X,Y = load_concrete(self.c_path+"/dataset/")
-            self.num_x = X.shape[0]
-        elif self.problem == "yacht":
-            X,Y = load_yacht(self.c_path+"/dataset/")
-            self.num_x = X.shape[0]
         ### benchmark ###
-        else: # ('bench')
-            if mode == "train":
-                X,Y = self.init_XY()
-            elif mode == "test":
-                X,Y = self.test_XY()
+        if mode == "train":
+            X,Y = self.init_XY()
+        elif mode == "test":
+            X,Y = self.test_XY()
         return X,Y
 
 
