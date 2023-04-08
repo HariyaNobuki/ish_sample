@@ -11,14 +11,14 @@ import geppy_hry as gep
 from deap_hry import creator, base, tools
 import deap_hry as deap
 
+## problem setting
+from GEP.problem import F0
 
 
 class GEP:
     def __init__(self,cnf):
         self.cnf = cnf
         self.Logger = logger.Logger(cnf)
-
-        self.num_eval = 0
         # for save df list
         self.df_main_log = []
     
@@ -99,7 +99,8 @@ class GEP:
 
     def gep(self,population,MAX_EVAL, n_generations,
                 stats=None, hall_of_fame=None, verbose=__debug__):
-
+        
+        self.num_eval = 0
         gep._validate_basic_toolbox(self.toolbox)
 
         logbook = deap.tools.Logbook()

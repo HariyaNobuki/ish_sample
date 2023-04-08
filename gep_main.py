@@ -8,7 +8,7 @@ import warnings
 ## my module
 from setting.configuration import Configuration
 from setting.arg_setting import set_parse
-from GEP.algorithm import gep
+from GEP.algorithm.gep import GEP
 from GEP.tools.makefiles import MakeFiles
 
 if __name__ == '__main__':
@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
         for trial in range(args.num_trial):
             cnf.resetSeed(trial)
-            alg = gep.GEP(cnf)
+            alg = GEP(cnf)
             alg.MakeInitPlot()  # make plot
             alg.main()
 
