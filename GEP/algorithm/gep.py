@@ -47,7 +47,7 @@ class GEP:
 
         self.toolbox = gep.Toolbox()     # geppy from self.toolbox
         self.toolbox.register('gene_gen', gep.Gene, pset=pset, head_length=self.cnf.h)
-        self.toolbox.register('individual', creator.Individual, gene_gen=self.toolbox.gene_gen, n_genes=self.cnf.n_genes, linker=myoperation.addLinker)
+        self.toolbox.register('individual', creator.Individual, gene_gen=self.toolbox.gene_gen, n_genes=self.cnf.n_genes, linker=operator.add)
         self.toolbox.register("population", tools.initRepeat, list, self.toolbox.individual)
 
         # compile utility: which translates an individual into an executable function (Lambda)
@@ -57,7 +57,7 @@ class GEP:
         self.toolbox.register('select', tools.selTournament, tournsize=5)
 
         # 1. general operators
-        self.toolbox.register('mut_uniform', gep.mutate_uniform, pset=pset, ind_pb=0.051, pb=1)
+        self.toolbox.register('mut_uniform', gep.mutate_uniform, pset=pset, ind_pb=0.05, pb=1)
         self.toolbox.register('mut_invert', gep.invert, pb=0.1)
         self.toolbox.register('mut_is_transpose', gep.is_transpose, pb=0.1)
         self.toolbox.register('mut_ris_transpose', gep.ris_transpose, pb=0.1)
@@ -113,8 +113,9 @@ class GEP:
             for ind, fit, t_fit in zip(invalid_individuals, fitnesses, test_fitnesses):
                 ind.fitness.values = fit
                 num_eval += 1
-                self.df_main_log.append(self.Logger._log_main_data(gen=gen,eval=num_eval,
-                                        fitness=fit,test_fitness=t_fit))
+                self.df_main_log.append(self.Logger._log_main_data(eval=num_eval,
+                                                                fitness=fit,
+                                                                test_fitness=t_fit))
             
             # finishing 
             if num_eval >= self.cnf.maxeval:
