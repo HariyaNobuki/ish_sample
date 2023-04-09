@@ -29,27 +29,28 @@ class Configuration:
             params.append({
             'name':'F0',
             'num_x':2,
-            'x1':[-1,1],
-            'x2':[-1,1],
+            'x_range':[-1,1],
             'operand':["+", "-", "sin", "cos"],
           })
         #if "F2" in problems:
-        #    params.append(F2._set_problem_dict)
+        #    params.append(F2)
         #if "F3" in problems:
-        #    params.append(F3._set_problem_dict)
+        #    params.append(F3)
         #if "F5" in problems:
-        #    params.append(F5._set_problem_dict)
+        #    params.append(F5)
         #if "F6" in problems:
-        #    params.append(F6._set_problem_dict)
+        #    params.append(F6)
         #if "F9" in problems:
-        #    params.append(F9._set_problem_dict)
+        #    params.append(F9)
         return params
     
     def set_param(self,info):
         self.num_x = info['num_x']
         self.operand = info['operand']
-
-
+        self.x_min = info['x_range'][0]
+        self.x_max = info['x_range'][1]
+        self.train_plot = 100
+        self.test_plot = 100
 
     
     def set_init_sample(self,mode):

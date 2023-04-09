@@ -21,7 +21,6 @@ if __name__ == '__main__':
         print(crayons.red("### "),crayons.red(info['name']))
 
     for problem in args.problems:   ## ex.. F-
-        print(crayons.blue("### "),crayons.red(problem))
 
         for trial in range(args.num_trial):
             cnf.resetSeed(trial)
