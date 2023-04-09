@@ -22,19 +22,24 @@ class GEP:
         # for save df list
         self.df_main_log = []
     
-    def main(self):
+    def _init_gep(self):
         # symbolic regression
         ### version 2 ###
         input_names = ["x{}".format(i) for i in range(self.cnf.num_x)]
         pset = gep.PrimitiveSet('Main', input_names=input_names)  # gep : symbol
-        pset.add_function(operator.add, 2)
-        pset.add_function(operator.sub, 2)
-        pset.add_function(operator.mul, 2)
-        pset.add_function(myoperation.protected_div, 2)
-        pset.add_function(operator.sin, 1)
-        pset.add_function(operator.cos, 1)
-        pset.add_function(operator.exp, 1)
-        #pset.add_function(myoperation.log, 1)
+        if '+' in self.cnf.operand:
+            pset.add_function(operator.add, 2)
+        if '-' in self.cnf.operand:
+            pset.add_function(operator.sub, 2)
+        if '*' in self.cnf.operand:
+            pset.add_function(operator.mul, 2)
+        if '/' in self.cnf.operand:
+            pset.add_function(myoperation.protected_div, 2)
+        if 'sin' in self.cnf.operand:
+            pset.add_function(operator.sin, 1)
+        if 'cos' in self.cnf.operand:
+            pset.add_function(operator.cos, 1)
+
         #pset.add_ephemeral_terminal(name='enc', gen=lambda: np.random.uniform(0, 1)) # each ENC is a random integer within [-10, 10]
         
         creator.create("FitnessMin", base.Fitness, weights=(-1,))  # to minimize the objective (fitness)
@@ -67,13 +72,7 @@ class GEP:
         # size of population and number of generations
         pop = self.toolbox.population(n=self.cnf.n_pop)
         hof = tools.HallOfFame(1)   # only record the best three individuals ever found in all generations
-
-        # start evolution
-        self.cnf.resetSeed()
-        self.cnf.n_gen = int((self.cnf.MAX_EVAL/self.cnf.n_pop))
-        pop = self.gep(pop ,
-                        MAX_EVAL = self.cnf.MAX_EVAL, n_generations=self.cnf.n_gen,
-                        stats=None, hall_of_fame=hof, verbose=False)
+        return pop,hof
 
     def evaluate(self,individual):
         """ variation any number """
@@ -97,9 +96,8 @@ class GEP:
         self.test_X,self.test_Y = self.cnf.set_init_sample("test")
 
 
-    def gep(self,population,MAX_EVAL, n_generations,
-                stats=None, hall_of_fame=None, verbose=__debug__):
-        
+    def main(self,population,stats=None, verbose=__debug__):
+    
         self.num_eval = 0
         gep._validate_basic_toolbox(self.toolbox)
 

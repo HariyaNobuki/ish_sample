@@ -19,13 +19,10 @@ if __name__ == '__main__':
     params = cnf.set_problem()
     for info in params:
         print(crayons.red("### "),crayons.red(info['name']))
-
-    for problem in args.problems:   ## ex.. F-
-
         for trial in range(args.num_trial):
             cnf.resetSeed(trial)
             alg = GEP(cnf)
-            alg.MakeInitPlot()  # make plot
+            alg._init_gep()  # make plot
             alg.main()
 
 

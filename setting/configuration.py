@@ -64,12 +64,12 @@ class Configuration:
 
     def init_XY(self):
         # np.zeros((2, NG, NT))
-        X = np.random.uniform(self.args.x_min,self.args.x_max, size=(self.num_x,self.train_plot))   # random numbers in range [-10, 10)
+        X = np.random.uniform(self.x_min,self.x_max, size=(self.num_x,self.train_plot))   # random numbers in range [-10, 10)
         Y = self.pl.switcher(X)
         return X , Y
 
     def test_XY(self):
-        X = np.random.uniform(self.args.x_min,self.args.x_max, size=(self.num_x,self.test_plot))   # random numbers in range [-10, 10)
+        X = np.random.uniform(self.x_min,self.x_max, size=(self.num_x,self.test_plot))   # random numbers in range [-10, 10)
         Y = self.pl.switcher(X)
         return X , Y
 
