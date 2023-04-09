@@ -4,7 +4,7 @@ import os
 import shutil
 
 ## my module
-from GEP.tools.makefiles import MakeFiles
+from GEP.tools.make_pro_plot import F0  # plz use this file
 
 ## problem setting
 from GEP.problem import F0
@@ -45,10 +45,7 @@ class Configuration:
         return params
     
     def set_param(self,info):
-        self.num_x = info['num_x']
         self.operand = info['operand']
-        self.x_min = info['x_range'][0]
-        self.x_max = info['x_range'][1]
         self.train_plot = 100
         self.test_plot = 100
 
@@ -60,18 +57,6 @@ class Configuration:
         elif mode == "test":
             X,Y = self.test_XY()
         return X,Y
-
-
-    def init_XY(self):
-        # np.zeros((2, NG, NT))
-        X = np.random.uniform(self.x_min,self.x_max, size=(self.num_x,self.train_plot))   # random numbers in range [-10, 10)
-        Y = self.pl.switcher(X)
-        return X , Y
-
-    def test_XY(self):
-        X = np.random.uniform(self.x_min,self.x_max, size=(self.num_x,self.test_plot))   # random numbers in range [-10, 10)
-        Y = self.pl.switcher(X)
-        return X , Y
 
     def resetSeed(self,seed=1):
         np.random.seed(seed)
