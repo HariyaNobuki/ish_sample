@@ -20,7 +20,6 @@ if __name__ == '__main__':
     for info in params:
         print(crayons.red("### "),crayons.red(info['name']))
 
-
     for problem in args.problems:   ## ex.. F-
         print(crayons.blue("### "),crayons.red(problem))
 
