@@ -90,13 +90,18 @@ class GEP:
         return np.sqrt(np.mean((self.test_Y - Yp)**2)/self.Y.shape[0]),
     
     # Nope stats
-    def main(self,population,stats=None,verbose=__debug__):
+    def main(self,population,x,y,t_x,t_y,stats=None,verbose=__debug__):
+        ## init plot
+        self.X = x
+        self.Y = y
+        self.test_X = t_x
+        self.Y = t_y
+
         # geppy hry
         gep._validate_basic_toolbox(self.toolbox)
 
         # emergency escape root
         num_eval = 0
-
         while num_eval < self.cnf.maxeval:
             # evaluate fitness
             # evaluate: only evaluate the invalid ones, i.e., no need to reevaluate the unchanged ones
@@ -109,7 +114,6 @@ class GEP:
                 self.df_main_log.append(self.Logger._log_main_data(eval=num_eval,
                                                                 fitness=fit,
                                                                 test_fitness=t_fit))
-            
             # finishing 
             if num_eval >= self.cnf.maxeval:
                 self.Logger._log_main_data_save(self.df_main_log)

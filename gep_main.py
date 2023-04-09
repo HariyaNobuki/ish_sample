@@ -25,8 +25,8 @@ if __name__ == '__main__':
             cnf.resetSeed(trial)
             alg = GEP(cnf)
             pop = alg._init_gep()  # make plot
-            pro.get_init_plot(info['name'],info['x_range'][0],info['x_range'][1],info['num_x'])
-            alg.main(pop)
+            x,y,t_x,t_y = pro.get_init_plot(info['name'],info['x_range'][0],info['x_range'][1],info['num_x'])
+            alg.main(pop,x,y,t_x,t_y)
 
 
 
