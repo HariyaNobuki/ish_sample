@@ -36,9 +36,9 @@ class GEP:
         if '/' in self.cnf.operand:
             pset.add_function(myoperation.protected_div, 2)
         if 'sin' in self.cnf.operand:
-            pset.add_function(operator.sin, 1)
+            pset.add_function(myoperation.sin, 1)
         if 'cos' in self.cnf.operand:
-            pset.add_function(operator.cos, 1)
+            pset.add_function(myoperation.cos, 1)
 
         #pset.add_ephemeral_terminal(name='enc', gen=lambda: np.random.uniform(0, 1)) # each ENC is a random integer within [-10, 10]
         

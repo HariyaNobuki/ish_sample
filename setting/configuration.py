@@ -44,6 +44,7 @@ class Configuration:
     
     def set_param(self,info):
         self.operand = info['operand']
+        self.num_x = info['num_x']
         self.train_plot = 100
         self.test_plot = 100
     
