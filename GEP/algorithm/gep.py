@@ -101,22 +101,16 @@ class GEP:
         self.num_eval = 0
         gep._validate_basic_toolbox(self.toolbox)
 
-        logbook = deap.tools.Logbook()
-        logbook.header = ['gen', 'nevals','num_arc','fitness','k_tau'] + (stats.fields if stats else [])
-
         # emergency escape root
         fit_list = []
 
-        for gen in tqdm.tqdm(range(n_generations + 1)):
-            self.cnf.resetSeed()
+        while self.num_eval < self.cnf.maxeval:
             # evaluate: only evaluate the invalid ones, i.e., no need to reevaluate the unchanged ones
             invalid_individuals = [ind for ind in population if not ind.fitness.valid]
             fitnesses = self.toolbox.map(self.toolbox.evaluate, invalid_individuals)
             test_fitnesses = self.toolbox.map(self.toolbox.test_evaluate, invalid_individuals)
             for ind, fit, t_fit in zip(invalid_individuals, fitnesses, test_fitnesses):
                 ind.fitness.values = fit
-                fit_list.append(fit[-1])
-                fit_list[-1] = min(fit_list)
                 self.num_eval += 1
                 self.df_main_log.append(self.Logger._log_main_data(gen=gen,eval=self.num_eval,
                                         fitness=fit_list[-1],test_fitness=t_fit[-1]))

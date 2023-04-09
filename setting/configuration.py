@@ -14,7 +14,7 @@ class Configuration:
         self.c_path = os.getcwd()
         self.args = args
 
-        self.MAX_EVAL = args.maxeval     # df = 1500
+        self.maxeval = args.maxeval     # df = 1500
         self.h = args.header          # head length
         self.n_genes = args.n_genes    # number of genes in a chromosome
         self.n_pop = args.numpop
