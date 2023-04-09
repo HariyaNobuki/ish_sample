@@ -3,8 +3,6 @@ import random
 import os
 import shutil
 
-## my module
-from GEP.tools.make_pro_plot import F0  # plz use this file
 
 ## problem setting
 from GEP.problem import F0
@@ -48,7 +46,6 @@ class Configuration:
         self.operand = info['operand']
         self.train_plot = 100
         self.test_plot = 100
-
     
     def set_init_sample(self,mode):
         ### benchmark ###

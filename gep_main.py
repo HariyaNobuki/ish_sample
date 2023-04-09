@@ -20,6 +20,7 @@ if __name__ == '__main__':
     pro = Problems()
     for info in params:
         print(crayons.red("### "),crayons.red(info['name']))
+        cnf.set_param(info)
         for trial in range(args.num_trial):
             cnf.resetSeed(trial)
             alg = GEP(cnf)
