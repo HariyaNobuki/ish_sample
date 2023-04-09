@@ -97,26 +97,27 @@ class GEP:
 
 
     def main(self,population,stats=None, verbose=__debug__):
-    
-        self.num_eval = 0
+        # geppy hry
         gep._validate_basic_toolbox(self.toolbox)
 
         # emergency escape root
-        fit_list = []
+        num_eval = 0
+        gen = 0
 
-        while self.num_eval < self.cnf.maxeval:
+        while num_eval < self.cnf.maxeval:
+            # evaluate fitness
             # evaluate: only evaluate the invalid ones, i.e., no need to reevaluate the unchanged ones
             invalid_individuals = [ind for ind in population if not ind.fitness.valid]
             fitnesses = self.toolbox.map(self.toolbox.evaluate, invalid_individuals)
             test_fitnesses = self.toolbox.map(self.toolbox.test_evaluate, invalid_individuals)
             for ind, fit, t_fit in zip(invalid_individuals, fitnesses, test_fitnesses):
                 ind.fitness.values = fit
-                self.num_eval += 1
-                self.df_main_log.append(self.Logger._log_main_data(gen=gen,eval=self.num_eval,
-                                        fitness=fit_list[-1],test_fitness=t_fit[-1]))
+                num_eval += 1
+                self.df_main_log.append(self.Logger._log_main_data(gen=gen,eval=num_eval,
+                                        fitness=fit,test_fitness=t_fit))
             
             # finishing 
-            if self.num_eval >= MAX_EVAL:
+            if num_eval >= self.cnf.maxeval:
                 self.Logger._log_main_data_save(self.df_main_log)
                 break
 
