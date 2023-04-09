@@ -15,7 +15,7 @@ def set_parse():
     # problem
     parser.add_argument('--problems', type=list, default=["F0","F2","F3","F5","F6","F9"], help='problems')
     # GEP 
-    parser.add_argument('--maxeval', '-me', type=int, default=10000, help='maxevaluation')
+    parser.add_argument('--maxeval', '-me', type=int, default=100, help='maxevaluation')
     parser.add_argument('--header', '-head', type=int, default=6, help='header length')
     parser.add_argument('--n_genes', '-n_genes', type=int, default=2, help='n_genes length')
     parser.add_argument('--numpop', '-pop', type=int, default=20, help='Num. of population')

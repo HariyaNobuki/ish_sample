@@ -15,9 +15,9 @@ class Logger:
     
     def _log_main_data_save(self,df):
         df_n = pd.DataFrame(df)        # new
-        if os.path.isfile(self.cnf.c_respath + "/_log_main.csv"):
-            df_o = pd.read_csv(self.cnf.c_respath + "/_log_main.csv")
+        if os.path.isfile(self.cnf.result_path + "/_log_main.csv"):
+            df_o = pd.read_csv(self.cnf.result_path + "/_log_main.csv")
             df_m = pd.concat([df_o,df_n],axis=0)        # merge
-            df_m.to_csv(self.cnf.c_respath + "/_log_main.csv",index = False)
+            df_m.to_csv(self.cnf.result_path + "/_log_main.csv",index = False)
         else:
-            df_n.to_csv(self.cnf.c_respath + "/_log_main.csv",index = False)
+            df_n.to_csv(self.cnf.result_path + "/_log_main.csv",index = False)

@@ -8,7 +8,7 @@ class Problems:
         x = np.random.uniform(x_min,x_max, size=(num_x,train_plot))
         t_x = np.random.uniform(x_min - 0.1 ,x_max + 0.1, size=(num_x,train_plot))
         if pro_name == 'F0':
-            y,t_y = self.F0(x)
+            y,t_y = self.F0(x,t_x)
 
         return x,y,t_x,t_y
 

@@ -43,7 +43,7 @@ class GEP:
         #pset.add_ephemeral_terminal(name='enc', gen=lambda: np.random.uniform(0, 1)) # each ENC is a random integer within [-10, 10]
         
         creator.create("FitnessMin", base.Fitness, weights=(-1,))  # to minimize the objective (fitness)
-        creator.create("Individual", gep.Chromosome, fitness=creator.FitnessMin , sur_encode = [] , f_sur = 0. , f_EI = 0.)
+        creator.create("Individual", gep.Chromosome, fitness=creator.FitnessMin)
 
         self.toolbox = gep.Toolbox()     # geppy from self.toolbox
         self.toolbox.register('gene_gen', gep.Gene, pset=pset, head_length=self.cnf.h)
@@ -95,7 +95,7 @@ class GEP:
         self.X = x
         self.Y = y
         self.test_X = t_x
-        self.Y = t_y
+        self.test_Y = t_y
 
         # geppy hry
         gep._validate_basic_toolbox(self.toolbox)
@@ -112,8 +112,8 @@ class GEP:
                 ind.fitness.values = fit
                 num_eval += 1
                 self.df_main_log.append(self.Logger._log_main_data(eval=num_eval,
-                                                                fitness=fit,
-                                                                test_fitness=t_fit))
+                                                                fitness=fit[-1],
+                                                                test_fitness=t_fit[-1]))
             # finishing 
             if num_eval >= self.cnf.maxeval:
                 self.Logger._log_main_data_save(self.df_main_log)

@@ -1,16 +1,16 @@
 import numpy as np
 import random 
 import os
-import shutil
-
 
 ## problem setting
-from GEP.problem import F0
+from GEP.tools.makefiles import MakeFiles
 
 class Configuration:
     def __init__(self,args):
         self.c_path = os.getcwd()
         self.args = args
+        self.result_path = args.result_path
+        os.makedirs(self.result_path,exist_ok=True)
 
         self.maxeval = args.maxeval     # df = 1500
         self.h = args.header          # head length
