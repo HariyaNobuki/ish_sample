@@ -9,8 +9,10 @@ class Logger:
     def __init__(self,cnf) -> None:
         self.cnf = cnf
 
-    def _log_main_data(self,eval=None,fitness=None,test_fitness=None,):
-        log_list = {"num_eval":eval,"fitness":fitness,"test_fitness":test_fitness}
+    def _log_main_data(self,eval=None,fitness=None,test_fitness=None):
+        log_list = {"num_eval":eval,
+                    "fitness_{}".format(self.cnf.trial):fitness,
+                    "test_fitness_{}".format(self.cnf.trial):test_fitness}
         return log_list
     
     def _log_main_data_save(self,df):

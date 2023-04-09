@@ -61,3 +61,4 @@ class Configuration:
     def resetSeed(self,seed=1):
         np.random.seed(seed)
         random.seed(seed)
+        self.trial = seed
