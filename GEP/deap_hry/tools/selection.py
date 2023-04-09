@@ -35,11 +35,6 @@ def selBest(individuals, k, fit_attr="fitness"):
     """
     return sorted(individuals, key=attrgetter(fit_attr), reverse=True)[:k]
 
-def selRBFBest(individuals, k, fit_attr="f_sur"):
-    return sorted(individuals, key=attrgetter(fit_attr), reverse=False)[:k]
-
-def selKRGBest(individuals, k, fit_attr="f_EI"):
-    return sorted(individuals, key=attrgetter(fit_attr), reverse=True)[:k]
 
 def selWorst(individuals, k, fit_attr="fitness"):
     """Select the *k* worst individuals among the input *individuals*. The
@@ -73,19 +68,6 @@ def selTournament(individuals, k, tournsize, fit_attr="fitness"):
         chosen.append(max(aspirants, key=attrgetter(fit_attr)))
     return chosen
 
-def selRBFTournament(individuals, k, tournsize=3, fit_attr="f_sur"):
-    chosen = []
-    for i in range(k):
-        aspirants = selRandom(individuals, tournsize)
-        chosen.append(min(aspirants, key=attrgetter(fit_attr)))
-    return chosen
-
-def selKRGTournament(individuals, k, tournsize=3, fit_attr="f_EI"):
-    chosen = []
-    for i in range(k):
-        aspirants = selRandom(individuals, tournsize)
-        chosen.append(max(aspirants, key=attrgetter(fit_attr)))
-    return chosen
 
 def selRoulette(individuals, k, fit_attr="fitness"):
     """Select *k* individuals from the input *individuals* using *k*
@@ -339,7 +321,7 @@ def selAutomaticEpsilonLexicase(individuals, k):
     return selected_individuals
 
 
-__all__ = ['selRandom', 'selBest','selRBFBest','selKRGBest','selRBFTournament', 'selKRGTournament','selWorst', 'selRoulette',
+__all__ = ['selRandom', 'selBest','selWorst', 'selRoulette',
            'selTournament', 'selDoubleTournament', 'selStochasticUniversalSampling',
            'selLexicase', 'selEpsilonLexicase', 'selAutomaticEpsilonLexicase']
 

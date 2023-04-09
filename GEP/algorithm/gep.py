@@ -71,8 +71,7 @@ class GEP:
         # 2. setting
         # size of population and number of generations
         pop = self.toolbox.population(n=self.cnf.n_pop)
-        hof = tools.HallOfFame(1)   # only record the best three individuals ever found in all generations
-        return pop,hof
+        return pop
 
     def evaluate(self,individual):
         """ variation any number """
@@ -90,19 +89,13 @@ class GEP:
         Yp = np.array(list(map(func, *x)))
         return np.sqrt(np.mean((self.test_Y - Yp)**2)/self.Y.shape[0]),
     
-    def MakeInitPlot(self):
-        # set problem
-        self.X,self.Y = self.cnf.set_init_sample("train")
-        self.test_X,self.test_Y = self.cnf.set_init_sample("test")
-
-
-    def main(self,population,stats=None, verbose=__debug__):
+    # Nope stats
+    def main(self,population,stats=None,verbose=__debug__):
         # geppy hry
         gep._validate_basic_toolbox(self.toolbox)
 
         # emergency escape root
         num_eval = 0
-        gen = 0
 
         while num_eval < self.cnf.maxeval:
             # evaluate fitness
@@ -142,4 +135,3 @@ class GEP:
             # replace the current population with the offsprings
             population = elites + offspring
         self.Logger._log_main_data_save(self.df_main_log)
-        return population

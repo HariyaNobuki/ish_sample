@@ -22,8 +22,8 @@ if __name__ == '__main__':
         for trial in range(args.num_trial):
             cnf.resetSeed(trial)
             alg = GEP(cnf)
-            alg._init_gep()  # make plot
-            alg.main()
+            pop = alg._init_gep()  # make plot
+            alg.main(pop)
 
 
 
