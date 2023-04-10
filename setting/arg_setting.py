@@ -11,7 +11,7 @@ def set_parse():
     # logging
     parser.add_argument('--result_path', type=str, default="result/")
     # expriment setting
-    parser.add_argument('--num_trial', type=int, default=31, help='Num. of trials')
+    parser.add_argument('--num_trial', type=int, default=3, help='Num. of trials')
     # problem
     parser.add_argument('--problems', type=list, default=["F0","F2","F3","F5","F6","F9"], help='problems')
     # GEP 

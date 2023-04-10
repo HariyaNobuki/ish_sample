@@ -48,7 +48,6 @@ class Configuration:
         self.num_x = info['num_x']
         self.train_plot = 100
         self.test_plot = 100
-        MakeFiles(os.path.join(self.result_path,info['name'],self.result_path),exist_ok=True)
     
     def set_init_sample(self,mode):
         ### benchmark ###
