@@ -114,10 +114,6 @@ class GEP:
                 self.df_main_log.append(self.Logger._log_main_data(eval=num_eval,
                                                                 fitness=fit[-1],
                                                                 test_fitness=t_fit[-1]))
-            # finishing 
-            if num_eval >= self.cnf.maxeval:
-                self.Logger._log_main_data_save(self.df_main_log)
-                break
 
             # selection with elitism
             elites = deap.tools.selBest(population, k=self.cnf.n_elites)
